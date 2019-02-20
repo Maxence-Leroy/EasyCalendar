@@ -104,7 +104,7 @@ public class SpeedScrollLinearLayoutManager extends LinearLayoutManager {
      * scrolling slow
      */
     public void slowScroll() {
-        millisecondsPerInch = MILLISECONDS_PER_INCH * 5f;
+        millisecondsPerInch = MILLISECONDS_PER_INCH * 2.5f;
     }
 
     /**
