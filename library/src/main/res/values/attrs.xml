@@ -16,6 +16,8 @@
             <enum name="china" value="1"/>
             <enum name="english" value="2"/>
         </attr>
+        <attr name="firstDayOfWeek" format="integer" />
+        <attr name="dayLabels" format="reference" />
 
     </declare-styleable>
 

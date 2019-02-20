@@ -47,6 +47,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
     private OnDateClickedListener onDateClickedListener;
 
     private List<Date> dateList;
+    private int firstDayOfWeek;
 
     /**
      * initialize adapter by {@link Date}
@@ -54,8 +55,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
      * @param context Activity context
      * @param date    first display date
      */
-    public CalendarAdapter(Context context, Date date) {
+    public CalendarAdapter(Context context, Date date, int firstDayOfWeek) {
         this.context = context;
+        this.firstDayOfWeek = firstDayOfWeek;
 
         dateList = new ArrayList<>();
         dateList.add(DateUtil.lastMonth(date));
@@ -66,6 +68,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MonthView monthView = new MonthView(context);
+        monthView.setFirstDayOfWeek(firstDayOfWeek);
         monthView.setDateDividerColor(dateDividerColor);
         monthView.setDateDividerSize(dateDividerSize);
         monthView.setVagueAdapter(vagueAdapter);

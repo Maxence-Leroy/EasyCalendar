@@ -32,6 +32,8 @@ import com.sch.calendar.listener.OnDateClickedListener;
 import com.sch.calendar.util.DateUtil;
 import com.sch.calendar.annotation.Month;
 
+import java.util.Arrays;
+
 /**
  * Created by StoneHui on 17/2/14.
  * <p>
@@ -57,6 +59,7 @@ public class MonthView extends GridLayout {
     private int dateDividerColor;
     private float dateDividerSize;
     private boolean showOverflowDate = true;
+    private int[] firstDayOfWeek = new int[]{6, 0, 1, 2, 3, 4, 5};
 
     public MonthView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -100,7 +103,7 @@ public class MonthView extends GridLayout {
         this.year = year;
         this.month = month;
 
-        firstWeekOfMonth = DateUtil.getFirstWeekOfMonth(year, month);
+        firstWeekOfMonth = firstDayOfWeek[DateUtil.getFirstWeekOfMonth(year, month)];
         dayCountOfMonth = DateUtil.getDayCountOfMonth(year, month);
 
         initAllDayItem();
@@ -310,4 +313,10 @@ public class MonthView extends GridLayout {
         }
     }
 
+    public void setFirstDayOfWeek(int day)
+    {
+        int diff = 7 - day;
+        firstDayOfWeek = new int[]{0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6}; //0
+        firstDayOfWeek = Arrays.copyOfRange(firstDayOfWeek, diff, diff + 7);
+    }
 }

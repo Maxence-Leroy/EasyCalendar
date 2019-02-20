@@ -5,4 +5,14 @@
     <string name="checkin_already">已签到</string>
     <string name="look_action">查看活动</string>
     <string name="action_calendar">活动日历</string>
+
+    <string-array name="day_labels">
+        <item>L</item>
+        <item>M</item>
+        <item>M</item>
+        <item>J</item>
+        <item>V</item>
+        <item>S</item>
+        <item>D</item>
+    </string-array>
 </resources>

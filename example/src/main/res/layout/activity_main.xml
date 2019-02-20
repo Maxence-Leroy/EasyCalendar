@@ -12,6 +12,8 @@
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        cv:firstDayOfWeek="1"
+        cv:dayLabels="@array/day_labels"
         cv:language="english"/>
 
     <Button

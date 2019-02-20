@@ -55,6 +55,7 @@ public class DateUtil {
         // Calendar 的月份从 0 开始，周从 ［0~6］表示［周日~周六］
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
         return calendar.get(Calendar.DAY_OF_WEEK) - 1;
     }
 

@@ -97,6 +97,9 @@ public class CalendarView extends LinearLayout {
     private SimpleDateFormat dateFormat;
     private Date currentDate;
 
+    private int firstDayOfWeek;
+    private CharSequence[] dayLabels;
+
     /**
      * Limited value to prevent the view's visible.
      */
@@ -132,6 +135,12 @@ public class CalendarView extends LinearLayout {
         dividerColor = array.getColor(R.styleable.CalendarView_dateDividerColor, Color.TRANSPARENT);
         dividerSize = array.getDimension(R.styleable.CalendarView_dateDividerSize, getResources().getDimension(R.dimen.dateDividerSize));
         language = array.getInt(R.styleable.CalendarView_language, LANGUAGE_CHINA);
+        firstDayOfWeek = array.getInt(R.styleable.CalendarView_firstDayOfWeek, 0);
+        dayLabels = array.getTextArray(R.styleable.CalendarView_dayLabels);
+
+        if (dayLabels == null)
+            dayLabels = new CharSequence[]{"S", "M", "T", "W", "T", "F", "S"};
+
         array.recycle();
     }
 
@@ -185,11 +194,6 @@ public class CalendarView extends LinearLayout {
 
     // initialize week bar
     private void initWeekBar() {
-        String[] weekArr = {"日", "一", "二", "三", "四", "五", "六"};
-        if (language == LANGUAGE_ENGLISH) {
-            weekArr = new String[]{"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
-        }
-
         LinearLayout weekLayout = new LinearLayout(getContext());
         weekLayout.setBackgroundDrawable(weekBackground);
         weekLayout.setPadding(0, (int) getResources().getDimension(R.dimen.dp5), 0, (int) getResources().getDimension(R.dimen.dp5));
@@ -199,7 +203,7 @@ public class CalendarView extends LinearLayout {
         for (int i = 0; i < 7; i++) {
             tvWeek = new TextView(getContext());
             tvWeek.setGravity(Gravity.CENTER);
-            tvWeek.setText(weekArr[i]);
+            tvWeek.setText(dayLabels[i]);
             tvWeek.setTextColor(weekColor);
             weekLayout.addView(tvWeek, new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1));
         }
@@ -208,7 +212,7 @@ public class CalendarView extends LinearLayout {
     // initialize RecyclerView for date.
     private void initRCVMonth() {
 
-        calendarAdapter = new CalendarAdapter(getContext(), DateUtil.currentMonth());
+        calendarAdapter = new CalendarAdapter(getContext(), DateUtil.currentMonth(), firstDayOfWeek);
         calendarAdapter.setDateDividerColor(dividerColor);
         calendarAdapter.setDateDividerSize(dividerSize);
 
