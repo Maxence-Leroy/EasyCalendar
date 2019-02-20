@@ -24,7 +24,7 @@ dependencies {
     implementation 'com.android.support:gridlayout-v7:28.0.0'
 }
 
-apply plugin: 'com.novoda.bintray-release'
+/*apply plugin: 'com.novoda.bintray-release'
 publish {
     userOrg = 'shichaohui'
     groupId = 'com.sch.calendar'
@@ -32,4 +32,4 @@ publish {
     publishVersion = '1.0.1'
     desc = 'Quickly customize the calendar UI. You can use EasyCalendar to quickly get the calendar style UI.'
     website = 'https://github.com/shichaohui/EasyCalendar.git'
-}
+}*/
