@@ -44,6 +44,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -212,12 +213,27 @@ public class CalendarView extends LinearLayout {
     // initialize RecyclerView for date.
     private void initRCVMonth() {
 
-        calendarAdapter = new CalendarAdapter(getContext(), DateUtil.currentMonth(), firstDayOfWeek);
+        Date currentMonth = DateUtil.currentMonth();
+        ArrayList<Date> months = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        Date month = new Date(calendar.get(Calendar.YEAR), 0, 1);
+        months.add(month);
+
+        for (int i = 1; i < 12; i ++)
+        {
+            month = DateUtil.nextMonth(month);
+            months.add(month);
+        }
+
+        currentPosition = currentMonth.getMonth();
+
+        calendarAdapter = new CalendarAdapter(getContext(), months, firstDayOfWeek);
         calendarAdapter.setDateDividerColor(dividerColor);
         calendarAdapter.setDateDividerSize(dividerSize);
 
         rcvMonth = new PageRecyclerView(getContext());
-        rcvMonth.setBackgroundDrawable(monthBackground);
+//        rcvMonth.setBackgroundDrawable(monthBackground);
         rcvMonth.addOnScrollListener(new RCVMonthScrollListener());
         SpeedScrollLinearLayoutManager manager = new SpeedScrollLinearLayoutManager(getContext(), HORIZONTAL, false);
         manager.slowScroll(); // Scrolling slow
@@ -446,9 +462,9 @@ public class CalendarView extends LinearLayout {
 
             setChangeMonthButtonEnable(false);
 
-            if (view == ibtnLastMonth) {
+            if (view == ibtnLastMonth && currentPosition > 0) {
                 rcvMonth.smoothScrollToPosition(currentPosition - 1);
-            } else if (view == ibtnNextMonth) {
+            } else if (view == ibtnNextMonth && currentPosition < calendarAdapter.getItemCount() - 1) {
                 rcvMonth.smoothScrollToPosition(currentPosition + 1);
             }
         }
@@ -479,12 +495,12 @@ public class CalendarView extends LinearLayout {
             showTitle(date);
 
             // add new month if position exceed limit
-            if (currentPosition == 0) {
+            /*if (currentPosition == 0) {
                 calendarAdapter.addNewLastMonth();
                 currentPosition = 1;
             } else if (currentPosition >= calendarAdapter.getItemCount() - 1) {
                 calendarAdapter.addNewNextMonth();
-            }
+            }*/
 
             if (onMonthChangedListener != null) {
                 // call back

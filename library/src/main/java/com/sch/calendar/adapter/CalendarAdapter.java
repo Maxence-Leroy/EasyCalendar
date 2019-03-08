@@ -55,14 +55,16 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
      * @param context Activity context
      * @param date    first display date
      */
-    public CalendarAdapter(Context context, Date date, int firstDayOfWeek) {
+    public CalendarAdapter(Context context, List<Date> months, int firstDayOfWeek) {
         this.context = context;
         this.firstDayOfWeek = firstDayOfWeek;
 
-        dateList = new ArrayList<>();
-        dateList.add(DateUtil.lastMonth(date));
-        dateList.add(date);
-        dateList.add(DateUtil.nextMonth(date));
+
+        dateList = months;
+//        dateList = new ArrayList<>();
+//        dateList.add(DateUtil.lastMonth(date));
+//        dateList.add(date);
+//        dateList.add(DateUtil.nextMonth(date));
     }
 
     @Override
