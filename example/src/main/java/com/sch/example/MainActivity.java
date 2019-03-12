@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
     // Initialize view for calendar
     private void initCalendarView() {
         calendarView.setCanDrag(true); // can't change month by slide
-        calendarView.setScaleEnable(false); // can't auto scale calendar when month changed.
+        //calendarView.setScaleEnable(false); // can't auto scale calendar when month changed.
         calendarView.setShowOverflowDate(true); // hide overflow date of showing month.
         calendarView.setCanFling(true);
+        calendarView.setBackgroundColor(0xFF0000FF);
         calendarView.setTitleFormat("yyyy-MM", Locale.CHINA);
         // Set a listener，callback when month changed.
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
