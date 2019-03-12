@@ -291,7 +291,9 @@ public class CalendarView extends LinearLayout {
         currentDate = date;
         Calendar calendar = Calendar.getInstance();
         calendar.set(date.getYear(), date.getMonth(), date.getDayOfMonth());
-        tvTitle.setText(dateFormat.format(calendar.getTime()));
+        String text = dateFormat.format(calendar.getTime());
+        text = text.substring(0, 1).toUpperCase() + text.substring(1);
+        tvTitle.setText(text);
     }
 
     /**

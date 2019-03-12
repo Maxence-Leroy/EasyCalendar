@@ -74,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
         calendarView.setShowOverflowDate(true); // hide overflow date of showing month.
         calendarView.setCanFling(true);
         calendarView.setBackgroundColor(0xFF0000FF);
-        calendarView.setTitleFormat("yyyy-MM", Locale.CHINA);
+//        calendarView.setTitleFormat("yyyy-MM", Locale.CHINA);
+        calendarView.setTitleFormat("MMMM yyyy", Locale.FRENCH);
+
         // Set a listener，callback when month changed.
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
