@@ -248,7 +248,7 @@ public class MonthView extends GridLayout {
         }
     }
 
-    @Override
+    /*@Override
     protected void onMeasure(int widthSpec, int heightSpec) {
         super.onMeasure(widthSpec, heightSpec);
         setMeasuredDimension(getMeasuredWidth(), getChildAt(0).getMeasuredWidth() * ROW_MAX_COUNT);
@@ -266,7 +266,7 @@ public class MonthView extends GridLayout {
             int childTop = i / COLUMN_COUNT * childSize + getPaddingTop();
             c.layout(childLeft, childTop, childLeft + childSize, childTop + childSize);
         }
-    }
+    }*/
 
     @Override
     protected void onDraw(Canvas canvas) {
