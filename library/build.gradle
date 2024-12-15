@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-
+    namespace = "com.sch.calendar"
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
@@ -23,13 +23,3 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:gridlayout-v7:28.0.0'
 }
-
-/*apply plugin: 'com.novoda.bintray-release'
-publish {
-    userOrg = 'shichaohui'
-    groupId = 'com.sch.calendar'
-    artifactId = 'easy-calendar'
-    publishVersion = '1.0.1'
-    desc = 'Quickly customize the calendar UI. You can use EasyCalendar to quickly get the calendar style UI.'
-    website = 'https://github.com/shichaohui/EasyCalendar.git'
-}*/
