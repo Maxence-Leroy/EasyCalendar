@@ -155,10 +155,6 @@ public class CalendarView extends LinearLayout {
         initWeekBar();
 
         setTitleFormat("yyyy-MM", Locale.CHINA);
-
-        // scroll to current date
-        rcvMonth.scrollToPosition(currentPosition);
-        showTitle(calendarAdapter.getDateList().get(currentPosition));
     }
 
     // initialize title bar
@@ -230,6 +226,10 @@ public class CalendarView extends LinearLayout {
         snapHelper.attachToRecyclerView(rcvMonth);
 
         addView(rcvMonth, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+        // scroll to current date
+        rcvMonth.scrollToPosition(currentPosition);
+        showTitle(calendarAdapter.getDateList().get(currentPosition));
     }
 
     /**
