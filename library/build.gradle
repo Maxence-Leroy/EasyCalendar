@@ -2,12 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
     namespace = "com.sch.calendar"
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
