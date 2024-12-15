@@ -154,8 +154,6 @@ public class CalendarView extends LinearLayout {
 
         initWeekBar();
 
-        initRCVMonth();
-
         setTitleFormat("yyyy-MM", Locale.CHINA);
 
         // scroll to current date
@@ -211,21 +209,9 @@ public class CalendarView extends LinearLayout {
     }
 
     // initialize RecyclerView for date.
-    private void initRCVMonth() {
+    public void initRCVMonth(ArrayList<Date> months) {
 
         Date currentMonth = DateUtil.currentMonth();
-        ArrayList<Date> months = new ArrayList<>();
-
-        Calendar calendar = Calendar.getInstance();
-        Date month = new Date(calendar.get(Calendar.YEAR), 0, 1);
-        months.add(month);
-
-        for (int i = 1; i < 12; i ++)
-        {
-            month = DateUtil.nextMonth(month);
-            months.add(month);
-        }
-
         currentPosition = currentMonth.getMonth();
 
         calendarAdapter = new CalendarAdapter(getContext(), months, firstDayOfWeek);
