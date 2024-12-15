@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: "maven-publish"
 
 android {
     namespace = "com.sch.calendar"
@@ -16,9 +17,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:gridlayout-v7:28.0.0'
+}
+
+publishing {
+    publications {
+        jitpack(MavenPublication) {
+            groupId = 'com.github.Maxence-Leroy'
+            artifactId = 'EasyCalendar'
+            version = '1.0.8'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
